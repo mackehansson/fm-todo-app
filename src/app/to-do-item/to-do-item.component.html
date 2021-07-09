@@ -1,0 +1,22 @@
+<fieldset [class.completed]="todo.completed" class="to-do-item">
+    <div class="to-do-item__check-wrapper">
+        <input
+            type="checkbox"
+            [id]="todo.id"
+            class="to-do-item__checkbox"
+            [checked]="todo.completed"
+            (change)="todo.completed = !todo.completed"
+        />
+        <label class="to-do-item__checkbox-label" [for]="todo.id">
+            <span *ngIf="todo.completed" class="visible-hidden"
+                >Task: {{ todo.content }} is completed</span
+            >
+            <span *ngIf="!todo.completed" class="visible-hidden"
+                >Complete {{ todo.content }}</span
+            >
+        </label>
+    </div>
+    <div class="to-do-item__input-wrapper">
+        <div class="to-do-item__text">{{ todo.content }}</div>
+    </div>
+</fieldset>

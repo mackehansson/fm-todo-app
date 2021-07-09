@@ -1,0 +1,22 @@
+<fieldset class="to-do-item">
+    <div class="to-do-item__check-wrapper">
+        <input
+            type="checkbox"
+            id="to-do-item-checkbox"
+            class="to-do-item__checkbox"
+            [checked]="todoComplete"
+        />
+        <label class="to-do-item__checkbox-label" for="to-do-item-checkbox"
+            ><span class="visible-hidden"> Add a new todo </span>
+        </label>
+    </div>
+    <div class="to-do-item__input-wrapper">
+        <input
+            type="text"
+            placeholder="Create new todo..."
+            class="to-do-item__input"
+            [(ngModel)]="todoContent"
+            (keyup.enter)="onEnter()"
+        />
+    </div>
+</fieldset>
