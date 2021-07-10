@@ -11,13 +11,43 @@ import { ToDo } from './to-do';
 export class AppComponent {
     todos: ToDo[] = TODOS;
 
+    filter: FilterType = FilterType.ALL;
+    allItems: ToDo[] = [
+        {
+            id: 1,
+            content: 'Complete online JavaScript course',
+            completed: true,
+        },
+        {
+            id: 2,
+            content: 'Jog around the park 3x',
+            completed: false,
+        },
+        {
+            id: 3,
+            content: '10 minutes meditation',
+            completed: false,
+        },
+        {
+            id: 4,
+            content: 'Read for 1 hour',
+            completed: false,
+        },
+        {
+            id: 5,
+            content: 'Pick up groceries',
+            completed: false,
+        },
+        {
+            id: 6,
+            content: 'Complete Todo App on Frontend Mentor',
+            completed: false,
+        },
+    ];
+
     userPrefersDark =
         window.matchMedia &&
         window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    userPrefersLight =
-        window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: light)').matches;
 
     ngOnInit(): void {
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -36,7 +66,7 @@ export class AppComponent {
             completed: todo.completed,
         };
 
-        this.todos.unshift(newToDo);
+        this.allItems.unshift(newToDo);
     }
 
     onClearCompleted(state: boolean) {
@@ -50,17 +80,23 @@ export class AppComponent {
     }
 
     onFilter(type: FilterType) {
-        if (type === FilterType.COMPLETED) {
-            this.todos = this.todos.filter((t) => t.completed);
-        } else if (type === FilterType.ALL) {
-            this.todos = TODOS;
-        } else if (type === FilterType.ACTIVE) {
-            this.todos = this.todos.filter((t) => !t.completed);
+        this.filter = type;
+    }
+
+    get items() {
+        if (this.filter === FilterType.ALL) {
+            return this.allItems;
         }
+
+        return this.allItems.filter((item) =>
+            this.filter === FilterType.COMPLETED
+                ? item.completed
+                : !item.completed
+        );
     }
 
     get todosActiveLeft() {
-        const newList = this.todos.filter((t) => !t.completed);
+        const newList = this.items.filter((t) => !t.completed);
         return newList.length;
     }
 }

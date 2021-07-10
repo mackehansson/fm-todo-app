@@ -10,7 +10,7 @@
         </section>
 
         <section class="to-do-list">
-            <app-to-do-list [list]="todos"></app-to-do-list>
+            <app-to-do-list [list]="items"></app-to-do-list>
             <app-to-do-actions
                 [todosLeft]="todosActiveLeft"
                 (clearCompleted)="onClearCompleted($event)"
