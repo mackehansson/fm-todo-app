@@ -70,13 +70,7 @@ export class AppComponent {
     }
 
     onClearCompleted(state: boolean) {
-        const newList = this.todos.map((item) => {
-            return {
-                ...item,
-                completed: false,
-            };
-        });
-        this.todos = newList;
+        this.allItems = this.allItems.filter((item) => !item.completed);
     }
 
     onFilter(type: FilterType) {

@@ -31,5 +31,7 @@ export class ToDoInputComponent implements OnInit {
             content: this.todoContent,
             completed: this.todoComplete,
         });
+        this.todoContent = '';
+        this.todoComplete = false;
     }
 }
