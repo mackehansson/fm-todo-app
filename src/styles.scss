@@ -32,6 +32,7 @@
 [data-theme="dark"] {
     --page-background: var(--very-dark-blue);
     --page-wrapper-background-image: url("assets/images/bg-desktop-dark.jpg");
+    --page-wrapper-background-image-mobile: url("assets/images/bg-mobile-dark.jpg");
     --toggle-background: url("assets/images/icon-sun.svg");
     --list-background: var(--very-dark-desaturated-blue);
     --to-do-color: var(--light-grayish-blue-hover);
@@ -49,6 +50,7 @@
 [data-theme="light"] {
     --page-background: var(--very-light-gray);
     --page-wrapper-background-image: url("assets/images/bg-desktop-light.jpg");
+    --page-wrapper-background-image-mobile: url("assets/images/bg-mobile-light.jpg");
     --toggle-background: url("assets/images/icon-moon.svg");
     --list-background: var(--very-light-gray);
     --to-do-color: var(--very-dark-grayish-glue);
@@ -62,44 +64,6 @@
         5px 5px 15px 5px rgba(0, 0, 0, 0);
     --todo-list-shadow: 0px 20px 36px 15px rgba(0, 0, 0, 0.1);
 }
-
-// @media (prefers-color-scheme: dark) {
-//     :root {
-//         --page-background: var(--very-dark-blue);
-//         --page-wrapper-background-image: url("assets/images/bg-desktop-dark.jpg");
-//         --toggle-background: url("assets/images/icon-sun.svg");
-//         --list-background: var(--very-dark-desaturated-blue);
-//         --to-do-color: var(--light-grayish-blue-hover);
-//         --to-do-placeholder-color: var(--dark-grayish-blue-dark);
-//         --to-do-completed-color: var(--dark-grayish-blue-dark);
-//         --checkmark-ring: var(--very-dark-grayish-blue);
-//         --to-do-border-bottom-color: var(--very-dark-grayish-blue);
-//         --actions-text-color: var(--very-dark-grayish-blue);
-//         --footer-text: var(--very-dark-grayish-blue);
-//         --new-todo-shadow: 0px 10px 13px -7px rgba(0, 0, 0, 0.6),
-//             5px 5px 15px 5px rgba(0, 0, 0, 0);
-//         --todo-list-shadow: 0px 20px 36px 15px rgba(0, 0, 0, 0.71);
-//     }
-// }
-
-// @media (prefers-color-scheme: light) {
-//     :root {
-//         --page-background: var(--very-light-gray);
-//         --page-wrapper-background-image: url("assets/images/bg-desktop-light.jpg");
-//         --toggle-background: url("assets/images/icon-moon.svg");
-//         --list-background: var(--very-light-gray);
-//         --to-do-color: var(--very-dark-grayish-glue);
-//         --to-do-placeholder-color: var(--dark-grayish-blue-light);
-//         --to-do-completed-color: var(--light-grayish-blue);
-//         --checkmark-ring: var(--dark-grayish-blue-light);
-//         --to-do-border-bottom-color: var(--light-grayish-blue);
-//         --actions-text-color: var(--dark-grayish-blue-light);
-//         --footer-text: var(--dark-grayish-blue-light);
-//         --new-todo-shadow: 0px 10px 13px -7px rgba(0, 0, 0, 0.2),
-//             5px 5px 15px 5px rgba(0, 0, 0, 0);
-//         --todo-list-shadow: 0px 20px 36px 15px rgba(0, 0, 0, 0.1);
-//     }
-// }
 
 html {
     font-size: 18px;
@@ -129,11 +93,15 @@ body {
 }
 
 #page-wrapper {
-    background: var(--page-wrapper-background-image);
+    background-image: var(--page-wrapper-background-image-mobile);
     background-repeat: no-repeat;
     background-size: contain;
     min-height: 300px;
     transition: all 150ms ease-in-out;
+
+    @media (min-width: 1440px) {
+        background-image: var(--page-wrapper-background-image);
+    }
 }
 
 fieldset {
@@ -144,13 +112,22 @@ fieldset {
 .page-content {
     max-width: 540px;
     margin: 0 auto;
+
+    @media (max-width: 1390px) {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
 }
 
 .page-header {
-    padding: 80px 0 50px 0;
+    padding: 40px 0 20px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (min-width: 1440px) {
+        padding: 80px 0 50px 0;
+    }
 
     &__title {
         font-size: 30px;
@@ -188,8 +165,12 @@ fieldset {
     background: var(--list-background);
     box-shadow: var(--todo-list-shadow);
     border-radius: var(--item-border-radius);
-    margin-bottom: 48px;
+    margin-bottom: 24px;
     transition: background 150ms ease-in-out;
+
+    @media (min-width: 1440px) {
+        margin-bottom: 48px;
+    }
 
     .to-do-item {
         border-bottom: 1px solid var(--to-do-border-bottom-color);
@@ -295,6 +276,10 @@ fieldset {
         box-sizing: border-box;
         display: flex;
         align-items: center;
+
+        @media (max-width: 1439px) {
+            font-size: 14px;
+        }
     }
 }
 
@@ -312,6 +297,10 @@ fieldset {
 
     &__states {
         text-align: center;
+
+        @media (max-width: 1439px) {
+            display: none;
+        }
     }
 
     &__clear {
@@ -332,6 +321,34 @@ fieldset {
     }
 }
 
+.to-do-actions-mobile {
+    background: var(--list-background);
+    box-shadow: var(--todo-list-shadow);
+    border-radius: var(--item-border-radius);
+    margin-bottom: 24px;
+    height: var(--to-do-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: 1440px) {
+        display: none;
+    }
+
+    &__button {
+        border: none;
+        background: none;
+        color: var(--actions-text-color);
+        font-size: 18px;
+
+        &.active,
+        &:hover {
+            transition: all 0.2s ease-in-out;
+            color: var(--color-bright-blue);
+        }
+    }
+}
+
 @keyframes strike {
     from {
         text-decoration-color: transparent;
@@ -339,4 +356,32 @@ fieldset {
     to {
         text-decoration-color: auto;
     }
+}
+
+/* in-flight clone */
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    pointer-events: none;
+}
+/* high-performance display:none; helper */
+.gu-hide {
+    left: -9999px !important;
+}
+/* added to mirrorContainer (default = body) while dragging */
+.gu-unselectable {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+/* added to the source element while its mirror is dragged */
+.gu-transit {
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
 }

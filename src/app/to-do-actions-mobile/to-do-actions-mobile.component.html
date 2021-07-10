@@ -1,0 +1,25 @@
+<div class="to-do-actions-mobile">
+    <div class="to-do-actions-mobile__states">
+        <button
+            class="to-do-actions-mobile__button"
+            [class.active]="pickedFilter === 0"
+            (click)="setFilterType(0)"
+        >
+            All
+        </button>
+        <button
+            class="to-do-actions-mobile__button"
+            [class.active]="pickedFilter === 1"
+            (click)="setFilterType(1)"
+        >
+            Active
+        </button>
+        <button
+            class="to-do-actions-mobile__button"
+            [class.active]="pickedFilter === 2"
+            (click)="setFilterType(2)"
+        >
+            Completed
+        </button>
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FormsModule } from '@angular/forms';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { DragulaModule } from 'ng2-dragula';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { ToDoActionsComponent } from './to-do-actions/to-do-actions.component';
 
 import { InMemoryDataService } from './in-memory-data.service';
 import { ToDoInputComponent } from './to-do-input/to-do-input.component';
+import { ToDoActionsMobileComponent } from './to-do-actions-mobile/to-do-actions-mobile.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +27,7 @@ import { ToDoInputComponent } from './to-do-input/to-do-input.component';
         ToDoListComponent,
         ToDoActionsComponent,
         ToDoInputComponent,
+        ToDoActionsMobileComponent,
     ],
     imports: [
         BrowserModule,
@@ -35,6 +38,7 @@ import { ToDoInputComponent } from './to-do-input/to-do-input.component';
         }),
         FormsModule,
         NgxWebstorageModule.forRoot(),
+        DragulaModule.forRoot(),
     ],
     providers: [{ provide: 'STORAGE_KEY', useValue: 'local_todolist' }],
     bootstrap: [AppComponent],

@@ -18,6 +18,12 @@
             ></app-to-do-actions>
         </section>
 
+        <app-to-do-actions-mobile
+            [todosLeft]="todosActiveLeft"
+            (clearCompleted)="onClearCompleted($event)"
+            (filter)="onFilter($event)"
+        ></app-to-do-actions-mobile>
+
         <footer class="page-footer">Drag and drop to reorder list</footer>
     </main>
 </div>
