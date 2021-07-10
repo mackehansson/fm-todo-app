@@ -182,6 +182,7 @@ fieldset {
 
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     &.completed {
         #{$cmp}__text {
