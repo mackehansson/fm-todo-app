@@ -22,7 +22,6 @@ export class ThemeToggleComponent implements OnInit {
         const currentTheme =
             document.documentElement.getAttribute('data-theme');
 
-        console.log('currentTheme:', currentTheme);
         if (currentTheme === 'light') {
             document.documentElement.setAttribute('data-theme', 'dark');
         } else {

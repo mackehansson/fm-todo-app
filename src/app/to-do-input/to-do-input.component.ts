@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ToDoService } from '../to-do.service';
+import {
+    Component,
+    OnInit,
+    Injector,
+    Output,
+    EventEmitter,
+} from '@angular/core';
+import { ToDo } from '../to-do';
 
 @Component({
     selector: 'app-to-do-input',
@@ -7,14 +13,23 @@ import { ToDoService } from '../to-do.service';
     styleUrls: ['./to-do-input.component.scss'],
 })
 export class ToDoInputComponent implements OnInit {
+    @Output()
+    newTodo = new EventEmitter<{
+        content: string;
+        completed: boolean;
+    }>();
+
     todoContent: string = '';
     todoComplete: boolean = false;
 
-    constructor(private todoService: ToDoService) {}
+    constructor() {}
 
     ngOnInit(): void {}
 
     onEnter() {
-        this.todoService.createTodo(this.todoContent);
+        this.newTodo.emit({
+            content: this.todoContent,
+            completed: this.todoComplete,
+        });
     }
 }

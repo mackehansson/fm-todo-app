@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ToDo } from '../to-do';
 import { ToDoService } from '../to-do.service';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
 @Component({
     selector: 'app-to-do-list',
@@ -8,11 +10,10 @@ import { ToDoService } from '../to-do.service';
     styleUrls: ['./to-do-list.component.scss'],
 })
 export class ToDoListComponent implements OnInit {
-    todos: ToDo[] = [];
+    @Input()
+    list: ToDo[] = [];
 
-    constructor(private todoService: ToDoService) {}
+    constructor() {}
 
-    ngOnInit() {
-        this.todoService.getTodos().subscribe((res) => (this.todos = res));
-    }
+    ngOnInit() {}
 }

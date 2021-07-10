@@ -5,6 +5,7 @@
             id="to-do-item-checkbox"
             class="to-do-item__checkbox"
             [checked]="todoComplete"
+            (change)="todoComplete = !todoComplete"
         />
         <label class="to-do-item__checkbox-label" for="to-do-item-checkbox"
             ><span class="visible-hidden"> Add a new todo </span>

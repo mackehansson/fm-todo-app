@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FormsModule } from '@angular/forms';
-import { StorageServiceModule } from 'ngx-webstorage-service';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,9 +34,9 @@ import { ToDoInputComponent } from './to-do-input/to-do-input.component';
             dataEncapsulation: false,
         }),
         FormsModule,
-        StorageServiceModule,
+        NgxWebstorageModule.forRoot(),
     ],
-    providers: [],
+    providers: [{ provide: 'STORAGE_KEY', useValue: 'local_todolist' }],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

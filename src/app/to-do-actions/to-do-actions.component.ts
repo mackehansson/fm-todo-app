@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { ToDoService } from '../to-do.service';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FilterType } from '../filter-type';
 
 @Component({
     selector: 'app-to-do-actions',
     templateUrl: './to-do-actions.component.html',
     styleUrls: ['./to-do-actions.component.scss'],
-    providers: [ToDoService],
 })
 export class ToDoActionsComponent implements OnInit {
+    @Input()
     todosLeft: number = 0;
 
-    constructor(private todoService: ToDoService) {}
+    @Output()
+    clearCompleted = new EventEmitter<boolean>();
 
-    ngOnInit(): void {
-        this.getTodosLength();
+    @Output()
+    filter = new EventEmitter<FilterType>();
+
+    pickedFilter: FilterType = FilterType.ALL;
+
+    constructor() {}
+
+    ngOnInit(): void {}
+
+    setFilterType(type: FilterType) {
+        this.pickedFilter = type;
+        this.filter.emit(type);
     }
 
-    getTodosLength(): void {
-        this.todosLeft = 3;
+    clear() {
+        this.clearCompleted.emit(true);
     }
 }

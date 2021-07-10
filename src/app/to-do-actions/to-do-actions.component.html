@@ -1,11 +1,31 @@
 <div class="to-do-actions">
     <div class="to-do-actions__items-left">{{ todosLeft }} items left</div>
     <div class="to-do-actions__states">
-        <button class="to-do-actions__button active">All</button>
-        <button class="to-do-actions__button">Active</button>
-        <button class="to-do-actions__button">Completed</button>
+        <button
+            class="to-do-actions__button"
+            [class.active]="pickedFilter === 0"
+            (click)="setFilterType(0)"
+        >
+            All
+        </button>
+        <button
+            class="to-do-actions__button"
+            [class.active]="pickedFilter === 1"
+            (click)="setFilterType(1)"
+        >
+            Active
+        </button>
+        <button
+            class="to-do-actions__button"
+            [class.active]="pickedFilter === 2"
+            (click)="setFilterType(2)"
+        >
+            Completed
+        </button>
     </div>
     <div class="to-do-actions__clear">
-        <button class="to-do-actions__button">Clear Completed</button>
+        <button class="to-do-actions__button" (click)="clear()">
+            Clear Completed
+        </button>
     </div>
 </div>
